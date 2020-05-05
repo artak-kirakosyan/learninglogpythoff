@@ -1,6 +1,6 @@
 """Define URL patterns for learning_logs."""
 
-from django.urls import re_path, path
+from django.urls import re_path
 
 from . import views
 
