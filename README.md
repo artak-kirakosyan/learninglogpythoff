@@ -6,3 +6,8 @@ topics they are interested or are learning.
 
 
 Web-site : https://learning-log-pyth.herokuapp.com/
+
+Before building for Heroku set the DISABLE_COLLECTSTATIC variable:
+   
+   heroku config:set DISABLE_COLLECTSTATIC=1
+
