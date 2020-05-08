@@ -1,0 +1,6 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block header %}
+    <h2>Error 500. There was an internal error.</h2>
+    <h2><a href="{% url 'learning_logs:index' %}">Go back</a></h2>
+{% endblock header %}
