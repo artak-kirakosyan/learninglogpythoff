@@ -99,6 +99,47 @@ def edit_entry(request, entry_id):
     return render(request, 'learning_logs/edit_entry.html', context)
 
 
+@login_required
+def edit_topic(request, topic_id):
+    """
+    Edit an existing entry.
+    """
+    topic = get_object_or_404(Topic, id=topic_id)
+
+    if topic.owner != request.user:
+        raise Http404
+    if request.method != "POST":
+        # Initial request, pre-fill form with the current entry.
+        form = TopicForm(instance=topic)
+    else:
+        form = TopicForm(instance=topic, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('learning_logs:topics'))
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_topic.html', context)
+
+
+@login_required
+def delete_entry(request, entry_id):
+    """
+    Delete the entry.
+    """
+    entry = get_object_or_404(Entry, id=entry_id)
+    entry.delete()
+    return HttpResponseRedirect(reverse('learning_logs:topics'))
+
+
+@login_required
+def delete_topic(request, topic_id):
+    """
+    Delete the entry.
+    """
+    topic = get_object_or_404(Topic, id=topic_id)
+    topic.delete()
+    return HttpResponseRedirect(reverse('learning_logs:topics'))
+
+
 def check_topic_owner(request, topic):
     if topic.owner != request.user:
         raise Http404

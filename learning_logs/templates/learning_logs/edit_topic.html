@@ -6,8 +6,8 @@
 {% endblock header %}
 
 {% block content %}
-    <h4> Edit entry, or <a href="{% url 'learning_logs:topic' topic.id %}">Cancel</a></h4>
-    <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post" class="form">
+    <h4> Edit topic, or <a href="{% url 'learning_logs:topic' topic.id %}">Cancel</a></h4>
+    <form action="{% url 'learning_logs:edit_topic' topic.id %}" method="post" class="form">
         {% csrf_token %}
         {% bootstrap_form form %}
 
